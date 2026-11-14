@@ -15,7 +15,10 @@
         "coords_copied": "Coords copied",
         "entity_delete_failed": "Couldn't delete that entity",
         "entity_deleted": "Entity deleted",
-        "entity_is_player": "You can't delete a player"
+        "entity_is_player": "You can't delete a player",
+        "no_waypoint": "No waypoint set",
+        "teleported_waypoint": "Teleported to your waypoint",
+        "no_ground": "No ground found there, so you were left 150 meters up"
     },
     "overlay": {
         "vehicle_entity": "Entity %d | net %d",
@@ -205,6 +208,8 @@
         "reportr": "Reply to a report",
         "report": "Send a report to staff",
         "warn": "Warn a player",
+        "tp": "Teleport to a player, a named location or x y [z] [heading]",
+        "tpm": "Teleport to your waypoint",
         "setjob": "Set a player's job and grade",
         "setgang": "Set a player's gang and grade",
         "setduty": "Put a player on or off duty",
@@ -235,7 +240,10 @@
             "job": "Job name, e.g. police",
             "gang": "Gang name, e.g. ballas",
             "grade": "Grade number, 0 if empty",
-            "duty_state": "on or off, empty to switch"
+            "duty_state": "on or off, empty to switch",
+            "tp_target": "Player ID, location name, or x",
+            "y": "y, when teleporting to coordinates",
+            "z": "z, optional"
         }
     },
     "catalog": {

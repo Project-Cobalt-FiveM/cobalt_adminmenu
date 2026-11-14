@@ -3,6 +3,7 @@ local draw <const> = require 'client.draw'
 local noclip <const> = require 'client.noclip'
 local entityview <const> = require 'client.entityview'
 local overlay <const> = require 'client.overlay'
+local teleport <const> = require 'client.teleport'
 
 local PERFORMANCE_MODS <const> = { 11, 12, 13, 15, 16 }
 local FAST_RUN_MULTIPLIER <const> = 1.49
@@ -84,9 +85,11 @@ end
 ---@param y number
 ---@param z? number nil lands on the ground under x, y
 ---@param heading? number
+---@return boolean grounded
 function actions.teleport(x, y, z, heading)
     lastCoords = GetEntityCoords(cache.ped)
-    exports.cobalt_core:Teleport(x, y, z, heading)
+
+    return teleport(x, y, z, heading)
 end
 
 ---@param text string
@@ -227,8 +230,17 @@ viewToggle('labelPeds', 'peds')
 viewToggle('labelObjects', 'objects')
 
 handlers.teleportMarker = function()
-    lastCoords = GetEntityCoords(cache.ped)
-    TriggerEvent('cobalt_core:Command:GoToMarker')
+    local blip <const> = GetFirstBlipInfoId(8)
+
+    if not DoesBlipExist(blip) then
+        return notify(locale('notify.no_waypoint'), 'error')
+    end
+
+    local coords <const> = GetBlipInfoIdCoord(blip)
+
+    if actions.teleport(coords.x, coords.y) then
+        notify(locale('notify.teleported_waypoint'), 'success')
+    end
 end
 
 handlers.teleportBack = function()

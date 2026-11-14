@@ -94,6 +94,26 @@ actionCommand({
     args = function(args) return { target = tonumber(args[1]), reason = rest(args, 2) } end,
 })
 
+Cobalt.Commands.Add('tp', locale('commands.tp'), {
+    { name = 'target', help = locale('commands.params.tp_target') },
+    { name = 'y', help = locale('commands.params.y') },
+    { name = 'z', help = locale('commands.params.z') },
+}, false, function(source, args)
+    if source == 0 or not args[1] then return end
+
+    local target <const> = tonumber(args[1])
+
+    if args[2] then
+        dispatch.run(source, 'teleportCoords', { coords = rest(args, 1) })
+    elseif target then
+        dispatch.run(source, 'goto', { target = target })
+    else
+        dispatch.run(source, 'teleportLocation', { location = args[1] })
+    end
+end, 'staff')
+
+actionCommand({ name = 'tpm', help = locale('commands.tpm'), action = 'teleportMarker' })
+
 actionCommand({
     name = 'setjob',
     help = locale('commands.setjob'),
