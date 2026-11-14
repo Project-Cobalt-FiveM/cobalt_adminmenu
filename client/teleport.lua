@@ -1,6 +1,11 @@
 local FADE_MS <const> = 500
 local STREAM_TIMEOUT_MS <const> = 5000
-local GROUND_PROBE_Z <const> = 1000.0
+local STEP_STREAM_MS <const> = 400
+local PROBE_TOP_Z <const> = 1000.0
+local PROBE_BOTTOM_Z <const> = -50.0
+local PROBE_STEP <const> = 50.0
+local RAY_END_Z <const> = -200.0
+local RAY_WORLD_FLAGS <const> = 1 | 16
 local FALLBACK_Z <const> = 150.0
 
 ---@param ped integer
@@ -16,26 +21,44 @@ local function waitForCollision(ped, x, y, z)
     end
 end
 
+---@param ignore integer
+---@param x number
+---@param y number
+---@param fromZ number
+---@return number? z where a straight-down ray first hits the world
+local function castDown(ignore, x, y, fromZ)
+    local handle <const> = StartExpensiveSynchronousShapeTestLosProbe(x, y, fromZ, x, y, RAY_END_Z, RAY_WORLD_FLAGS, ignore, 4)
+    local _, hit <const>, coords <const> = GetShapeTestResult(handle)
+
+    if hit == 1 then return coords.z end
+end
+
 ---@param ped integer
+---@param ignore integer
 ---@param x number
 ---@param y number
 ---@return number? z
-local function findGround(ped, x, y)
-    local deadline <const> = GetGameTimer() + STREAM_TIMEOUT_MS
+local function findGround(ped, ignore, x, y)
+    for z = PROBE_TOP_Z, PROBE_BOTTOM_Z, -PROBE_STEP do
+        SetPedCoordsKeepVehicle(ped, x, y, z)
 
-    SetPedCoordsKeepVehicle(ped, x, y, GROUND_PROBE_Z)
+        local deadline <const> = GetGameTimer() + STEP_STREAM_MS
 
-    while GetGameTimer() < deadline do
-        RequestCollisionAtCoord(x, y, GROUND_PROBE_Z)
+        repeat
+            RequestCollisionAtCoord(x, y, z)
+            Wait(0)
+        until HasCollisionLoadedAroundEntity(ped) or GetGameTimer() > deadline
 
-        local found <const>, groundZ <const> = GetGroundZFor_3dCoord(x, y, GROUND_PROBE_Z, false)
+        local rayZ <const> = castDown(ignore, x, y, z)
+
+        if rayZ then return rayZ end
+
+        local found <const>, groundZ <const> = GetGroundZFor_3dCoord(x, y, z, false)
 
         if found then return groundZ end
-
-        Wait(100)
     end
 
-    local onWater <const>, waterZ <const> = GetWaterHeight(x, y, GROUND_PROBE_Z)
+    local onWater <const>, waterZ <const> = GetWaterHeight(x, y, PROBE_TOP_Z)
 
     if onWater then return waterZ end
 end
@@ -65,10 +88,11 @@ return function(x, y, z, heading)
         SetPedCoordsKeepVehicle(ped, x, y, landZ)
         waitForCollision(ped, x, y, landZ)
     else
-        landZ = findGround(ped, x, y)
+        landZ = findGround(ped, frozen, x, y)
     end
 
     SetPedCoordsKeepVehicle(ped, x, y, landZ or FALLBACK_Z)
+    waitForCollision(ped, x, y, landZ or FALLBACK_Z)
 
     if heading then
         SetEntityHeading(frozen, heading)
