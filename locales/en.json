@@ -1,0 +1,926 @@
+{
+    "notify": {
+        "copied": "Copied to the clipboard",
+        "godmode_on": "God mode on",
+        "godmode_off": "God mode off",
+        "no_back_position": "There is nowhere to go back to",
+        "coords_format": "Enter coords as x, y or x, y, z",
+        "unknown_location": "Unknown location",
+        "free_aim_required": "Turn on free-aim entity info and aim at something",
+        "vehicle_fixed": "Vehicle fixed",
+        "mods_maxed": "Performance mods maxed",
+        "model_not_listed": "This model isn't in the vehicle list",
+        "entity_frozen": "Entity frozen",
+        "entity_unfrozen": "Entity unfrozen",
+        "coords_copied": "Coords copied",
+        "entity_delete_failed": "Couldn't delete that entity",
+        "entity_deleted": "Entity deleted",
+        "entity_is_player": "You can't delete a player"
+    },
+    "overlay": {
+        "vehicle_entity": "Entity %d | net %d",
+        "vehicle_health": "Engine %.1f | body %.1f | fuel %.1f"
+    },
+    "spectate": {
+        "started": "Spectating. Run Spectate again to stop.",
+        "target_left": "The player you were spectating left."
+    },
+    "entity": {
+        "model": "Model %s (%d)",
+        "unknown": "unknown",
+        "ids": "Entity %d, net %s, owner %d",
+        "local_only": "local",
+        "health": "Health %d / %d, armour %d",
+        "vehicle_health": "Engine %s, body %s",
+        "speed": "Speed %d km/h, gear %d",
+        "heading": "Heading %s, %sm away",
+        "coords": "Coords %s",
+        "rotation": "Rotation %s",
+        "free_aim_hint": "Free-aim: [G] freeze or unfreeze",
+        "laser_hint": "Laser: %s  [H] copy coords  [E] delete entity"
+    },
+    "keybinds": {
+        "open_menu": "Open the admin menu",
+        "toggle_noclip": "Toggle admin noclip"
+    },
+    "common": {
+        "not_in_vehicle": "You aren't in a vehicle",
+        "amount_above_zero": "Enter an amount above 0",
+        "unknown_item": "No item called %s",
+        "account_and_amount": "Pick an account and an amount above 0",
+        "give_reason": "Give a reason",
+        "inventory_cleared": "Cleared the inventory of %s",
+        "system_author": "SYSTEM",
+        "player_offline": "That player is not online",
+        "unknown_action": "Unknown action",
+        "rank_required": "%s needs the %s rank"
+    },
+    "self": {
+        "enter_rounds": "Enter a number of rounds",
+        "ammo_set": "Ammo set to %d"
+    },
+    "vehicles": {
+        "pick_vehicle": "Pick a vehicle",
+        "plate_length": "Plates are 1 to 8 characters",
+        "plate_taken": "Plate %s is taken",
+        "plate_changed": "Plate changed to %s",
+        "enter_plate": "Enter a plate",
+        "no_trunk": "No trunk for %s",
+        "no_owned_plate": "No owned vehicle has that plate",
+        "marked_in_garage": "%s marked as in garage",
+        "marked_out": "%s marked as out",
+        "not_saved": "Couldn't read the vehicle, so it wasn't saved",
+        "unknown_model": "Unknown vehicle model: %s",
+        "spawn_failed": "Could not spawn %s",
+        "saved": "The vehicle is yours now",
+        "already_yours": "This vehicle is already yours",
+        "refuelled": "Vehicle refuelled",
+        "deleted": "Vehicle deleted"
+    },
+    "world": {
+        "pick_weather": "Pick a weather type",
+        "pick_time": "Pick a time",
+        "pick_toggle": "Pick on or off"
+    },
+    "server": {
+        "write_message": "Write a message",
+        "announcement_author": "Announcement",
+        "announcement_sent": "Announcement sent",
+        "revived_all": "Revived everyone",
+        "revived_radius": "Revived %d players",
+        "gave_item_all": "Gave everyone %dx %s",
+        "gave_money_all": "Gave everyone $%d %s",
+        "kicked_all": "Kicked everyone else",
+        "enter_ban": "Enter a ban ID or identifier",
+        "ban_not_found": "No ban matches that, or it is permanent and needs an owner",
+        "bans_removed": "Removed %d ban(s)",
+        "no_citizen": "No character has that citizen ID",
+        "no_stash": "No stash has that ID",
+        "unknown_resource": "Unknown resource",
+        "unknown_state": "Unknown state",
+        "stop_from_console": "Stop this menu from the console",
+        "resource_state": "%s: %s"
+    },
+    "reports": {
+        "receiving_on": "You're receiving reports",
+        "receiving_off": "You're no longer receiving reports",
+        "reporter_gone": "That reporter is gone",
+        "closed": "That report is closed",
+        "write_reply": "Write a reply",
+        "response_author": "Admin response",
+        "reply_to": "Reply to #%d: %s",
+        "reply_sent": "Reply sent",
+        "sent": "Report #%d sent",
+        "cooldown": "Wait a minute before sending another report",
+        "too_many": "You already have reports waiting for staff",
+        "chat_author": "Report #%d | %s (%d)",
+        "staff_chat_author": "Staff | %s"
+    },
+    "players": {
+        "not_online": "No player with id %s is online",
+        "rank_too_low": "You can only act on players below your rank",
+        "ban_permanent": "This ban is permanent.",
+        "ban_expires": "Your ban expires %s",
+        "spectate_self": "You can't spectate yourself",
+        "not_in_vehicle": "They aren't in a vehicle",
+        "no_free_seats": "No free seats",
+        "enter_bucket": "Enter a bucket number",
+        "bucket_moved": "Moved %s to bucket %d",
+        "revived": "Revived %s",
+        "healed": "Healed %s",
+        "froze": "Froze %s",
+        "unfroze": "Unfroze %s",
+        "uncuffed": "Uncuffed %s",
+        "cuffed": "Cuffed %s",
+        "stress_removed": "Removed stress from %s",
+        "muted": "Muted %s",
+        "unmuted": "Unmuted %s",
+        "nui_focus": "Changed NUI focus for %s",
+        "pick_job": "Pick a valid job and grade",
+        "pick_gang": "Pick a valid gang and grade",
+        "org_refused": "cobalt_management refused the change",
+        "org_set": "%s is now %s, %s",
+        "pick_ped": "Pick a ped model",
+        "inventory_full": "Their inventory can't hold that",
+        "gave_item": "Gave %dx %s to %s",
+        "gave_money": "Gave $%d %s to %s",
+        "not_enough_money": "They don't have that much",
+        "took_money": "Took $%d %s from %s",
+        "pick_vehicle": "Pick a vehicle from the list",
+        "plate_max": "Plates are 8 characters at most",
+        "car_received": "A %s with plate %s is in %s",
+        "gave_car": "Gave %s a %s",
+        "vehicle_not_theirs": "That vehicle isn't theirs",
+        "vehicle_fixed": "Fixed the vehicle of %s",
+        "pick_sound": "Pick a sound from the list",
+        "warned_by": "You were warned by %s: %s",
+        "warned": "Warned %s",
+        "pick_rank": "Pick a rank",
+        "rank_received": "You now have the %s rank",
+        "rank_set": "%s is now %s",
+        "kicked": "Kicked %s",
+        "permanent_needs_owner": "Permanent bans need the owner rank",
+        "pick_duration": "Pick a duration",
+        "ban_identifier": "Ban at least one identifier",
+        "ban_failed": "The ban could not be saved",
+        "banned": "Banned %s (ban #%d)",
+        "unemployed": "Unemployed",
+        "civilian": "Civilian",
+        "already_dead": "%s is already dead",
+        "revive_failed": "Couldn't revive %s",
+        "revive_self_failed": "Couldn't revive you",
+        "vehicle_already_out": "%s is already out somewhere in the city",
+        "kick_reason": "You were kicked: %s",
+        "ban_reason": "You were banned: %s\n%s",
+        "no_job": "%s has no job to clock on for",
+        "duty_on": "%s is now on duty as %s",
+        "duty_off": "%s is now off duty"
+    },
+    "warnings": {
+        "count": "%s has %d warning(s)",
+        "entry": "#%d by %s on %s: %s",
+        "not_found": "No warning has that number",
+        "deleted": "Deleted warning #%d",
+        "unknown_sender": "Unknown"
+    },
+    "logs": {
+        "action_used": "%s used %s",
+        "database_backend": "LogBackend is 'database': admin actions go to the local admin_logs table instead of FiveMesh. This is highly unrecommended. The table grows without limit and nothing in the menu reads it. Set LogBackend = 'fivemesh' in config.lua.",
+        "unknown_backend": "Unknown LogBackend '%s', using 'fivemesh'"
+    },
+    "commands": {
+        "car": "Spawn a vehicle with keys",
+        "admincar": "Save the vehicle you are in to your garage",
+        "maxmods": "Max out your vehicle",
+        "blips": "Toggle player blips",
+        "names": "Toggle player names",
+        "coords": "Toggle the coords overlay",
+        "vector2": "Copy vector2 to the clipboard",
+        "vector3": "Copy vector3 to the clipboard",
+        "vector4": "Copy vector4 to the clipboard",
+        "heading": "Copy your heading to the clipboard",
+        "reporttoggle": "Toggle receiving reports",
+        "setammo": "Set ammo for the weapon in your hands",
+        "announce": "Send an announcement to everyone",
+        "reportr": "Reply to a report",
+        "report": "Send a report to staff",
+        "warn": "Warn a player",
+        "setjob": "Set a player's job and grade",
+        "setgang": "Set a player's gang and grade",
+        "setduty": "Put a player on or off duty",
+        "setmodel": "Change a ped model",
+        "kickall": "Kick everyone else",
+        "unban": "Remove a ban",
+        "admin": "Open the admin menu",
+        "staffchat": "Message all staff",
+        "checkwarns": "List a player's warnings",
+        "delwarn": "Delete a warning by its number",
+        "setspeed": "Set your run speed",
+        "givenuifocus": "Set NUI focus for a player",
+        "params": {
+            "vehicle_model": "Vehicle model, e.g. zentorno",
+            "rounds": "Rounds, e.g. 250",
+            "message": "Message",
+            "report_number": "Report number",
+            "reply": "Reply",
+            "player_id": "Player ID",
+            "reason": "Reason",
+            "ped_model": "Ped model",
+            "player_id_optional": "Player ID, empty for yourself",
+            "ban": "Ban ID, license or Discord ID",
+            "what_happened": "What happened",
+            "warning_number": "Warning number from /checkwarns",
+            "speed": "fast or normal",
+            "boolean": "true or false",
+            "job": "Job name, e.g. police",
+            "gang": "Gang name, e.g. ballas",
+            "grade": "Grade number, 0 if empty",
+            "duty_state": "on or off, empty to switch"
+        }
+    },
+    "catalog": {
+        "noclip": {
+            "label": "Noclip"
+        },
+        "godmode": {
+            "label": "God mode"
+        },
+        "invisible": {
+            "label": "Invisible"
+        },
+        "names": {
+            "label": "Player names"
+        },
+        "blips": {
+            "label": "Player blips"
+        },
+        "infinite_ammo": {
+            "label": "Infinite ammo"
+        },
+        "revive_self": {
+            "label": "Revive yourself"
+        },
+        "teleport_marker": {
+            "label": "Teleport to marker"
+        },
+        "teleport_back": {
+            "label": "Teleport back"
+        },
+        "teleport_coords": {
+            "label": "Teleport to coords",
+            "hint": "x, y and an optional z"
+        },
+        "teleport_location": {
+            "label": "Teleport to location"
+        },
+        "set_ammo": {
+            "label": "Set ammo",
+            "hint": "For the weapon in your hands"
+        },
+        "coords": {
+            "label": "Show coords"
+        },
+        "fast_run": {
+            "label": "Fast run"
+        },
+        "entity_laser": {
+            "label": "Entity laser"
+        },
+        "entity_free_aim": {
+            "label": "Free-aim entity info"
+        },
+        "label_vehicles": {
+            "label": "Label nearby vehicles"
+        },
+        "label_peds": {
+            "label": "Label nearby peds"
+        },
+        "label_objects": {
+            "label": "Label nearby objects"
+        },
+        "copy_vector2": {
+            "label": "Copy vector2"
+        },
+        "copy_vector3": {
+            "label": "Copy vector3"
+        },
+        "copy_vector4": {
+            "label": "Copy vector4"
+        },
+        "copy_heading": {
+            "label": "Copy heading"
+        },
+        "copy_entity": {
+            "label": "Copy entity info",
+            "hint": "The entity under free-aim"
+        },
+        "delete_entity": {
+            "label": "Delete entity"
+        },
+        "goto": {
+            "label": "Go to"
+        },
+        "bring": {
+            "label": "Bring"
+        },
+        "spectate": {
+            "label": "Spectate"
+        },
+        "into_vehicle": {
+            "label": "Sit in their vehicle"
+        },
+        "set_bucket": {
+            "label": "Routing bucket"
+        },
+        "revive": {
+            "label": "Revive"
+        },
+        "heal": {
+            "label": "Heal",
+            "hint": "Health, armour, food and water"
+        },
+        "freeze": {
+            "label": "Freeze"
+        },
+        "cuff": {
+            "label": "Cuff"
+        },
+        "remove_stress": {
+            "label": "Remove stress"
+        },
+        "mute": {
+            "label": "Mute voice"
+        },
+        "nui_focus": {
+            "label": "Free their cursor",
+            "hint": "For a player stuck with the mouse on screen"
+        },
+        "kill": {
+            "label": "Kill"
+        },
+        "set_job": {
+            "label": "Set job"
+        },
+        "set_gang": {
+            "label": "Set gang"
+        },
+        "set_duty": {
+            "label": "Switch duty",
+            "hint": "Clocks the player on or off for their job"
+        },
+        "set_ped": {
+            "label": "Set ped"
+        },
+        "clothing": {
+            "label": "Clothing menu",
+            "hint": "Opens the wardrobe for them"
+        },
+        "open_inventory": {
+            "label": "Open inventory"
+        },
+        "give_item": {
+            "label": "Give item",
+            "hint": "Player, item, amount"
+        },
+        "clear_inventory": {
+            "label": "Clear inventory"
+        },
+        "give_money": {
+            "label": "Give money",
+            "hint": "Cash, bank or crypto"
+        },
+        "remove_money": {
+            "label": "Remove money",
+            "hint": "Cash, bank or crypto"
+        },
+        "give_car": {
+            "label": "Give car",
+            "hint": "Adds it to their garage"
+        },
+        "spawn_their_vehicle": {
+            "label": "Spawn their vehicle"
+        },
+        "fix_their_vehicle": {
+            "label": "Fix their vehicle"
+        },
+        "drunk": {
+            "label": "Make drunk"
+        },
+        "play_sound": {
+            "label": "Play sound"
+        },
+        "set_on_fire": {
+            "label": "Set on fire"
+        },
+        "explode": {
+            "label": "Explode"
+        },
+        "warn": {
+            "label": "Warn"
+        },
+        "set_permission": {
+            "label": "Set permissions"
+        },
+        "kick": {
+            "label": "Kick"
+        },
+        "ban": {
+            "label": "Ban"
+        },
+        "spawn_vehicle": {
+            "label": "Spawn vehicle",
+            "hint": "You get the keys"
+        },
+        "fix_vehicle": {
+            "label": "Fix vehicle"
+        },
+        "refuel_vehicle": {
+            "label": "Refuel vehicle"
+        },
+        "max_mods": {
+            "label": "Max mods"
+        },
+        "change_plate": {
+            "label": "Change plate"
+        },
+        "save_vehicle": {
+            "label": "Save to my garage"
+        },
+        "delete_vehicle": {
+            "label": "Delete vehicle"
+        },
+        "vehicle_dev": {
+            "label": "Vehicle dev overlay",
+            "hint": "Entity ID, net ID, hash and health on screen"
+        },
+        "open_trunk": {
+            "label": "Open trunk"
+        },
+        "mark_in_garage": {
+            "label": "Mark as in garage"
+        },
+        "mark_out": {
+            "label": "Mark as out"
+        },
+        "set_weather": {
+            "label": "Change weather"
+        },
+        "set_time": {
+            "label": "Change time"
+        },
+        "freeze_time": {
+            "label": "Freeze time"
+        },
+        "dynamic_weather": {
+            "label": "Dynamic weather"
+        },
+        "blackout": {
+            "label": "Blackout"
+        },
+        "announce": {
+            "label": "Announcement",
+            "hint": "Sent to every player in chat"
+        },
+        "revive_all": {
+            "label": "Revive all"
+        },
+        "revive_radius": {
+            "label": "Revive within radius",
+            "hint": "15 m around you"
+        },
+        "give_item_all": {
+            "label": "Give item to everyone",
+            "hint": "Item, amount"
+        },
+        "give_money_all": {
+            "label": "Give money to everyone",
+            "hint": "Cash, bank or crypto"
+        },
+        "kick_all": {
+            "label": "Kick everyone"
+        },
+        "unban": {
+            "label": "Unban",
+            "hint": "Ban ID, license or Discord ID"
+        },
+        "delete_warning": {
+            "label": "Delete warning",
+            "hint": "By its number in /checkwarns"
+        },
+        "clear_inventory_offline": {
+            "label": "Clear offline inventory",
+            "hint": "By citizen ID"
+        },
+        "open_stash": {
+            "label": "Open stash"
+        },
+        "resource": {
+            "label": "Resource state"
+        },
+        "receive_reports": {
+            "label": "Receive reports"
+        },
+        "report_goto": {
+            "label": "Go to reporter"
+        },
+        "report_reply": {
+            "label": "Reply to report"
+        },
+        "report_close": {
+            "label": "Close report"
+        }
+    },
+    "fields": {
+        "player": "Player",
+        "coords": "Coords",
+        "coords_placeholder": "x, y, z (z optional), e.g. 215.8, -810.1",
+        "location": "Location",
+        "rounds": "Rounds",
+        "bucket": "Bucket",
+        "job": "Job",
+        "grade": "Grade",
+        "gang": "Gang",
+        "ped_model": "Ped model",
+        "item": "Item",
+        "amount": "Amount",
+        "account": "Account",
+        "vehicle": "Vehicle",
+        "plate": "Plate",
+        "garage": "Garage",
+        "sound": "Sound",
+        "reason": "Reason",
+        "rank": "Rank",
+        "new_plate": "New plate",
+        "new_plate_placeholder": "Up to 8 characters",
+        "weather": "Weather",
+        "time": "Time",
+        "message": "Message",
+        "ban_id_or_identifier": "Ban ID or identifier",
+        "citizen_id": "Citizen ID",
+        "stash_id": "Stash ID",
+        "warning_number": "Warning number",
+        "reply": "Reply"
+    },
+    "ui": {
+        "common": {
+            "close": "Close",
+            "cancel": "Cancel",
+            "go_back": "Go back",
+            "send": "Send",
+            "delete": "Delete",
+            "loading": "Loading",
+            "none": "None",
+            "required": "Required",
+            "optional": "Optional",
+            "choose_one": "Choose one",
+            "id": "ID %s",
+            "filtered_count": "%d of %d",
+            "list_and": "%s and %s",
+            "players_one": "%d player",
+            "players_many": "%d players"
+        },
+        "ranks": {
+            "staff": "Staff",
+            "admin": "Admin",
+            "owner": "Owner"
+        },
+        "nav": {
+            "label": "Admin pages",
+            "logo": "Project Cobalt",
+            "home": "Admin",
+            "home_rail": "Home",
+            "players": "Players",
+            "vehicles": "Vehicles",
+            "world": "World and dev tools",
+            "commands": "Commands",
+            "server": "Server",
+            "reports": "Reports"
+        },
+        "time": {
+            "now": "now",
+            "seconds_short": "%ds",
+            "minutes_short": "%dm",
+            "hours_short": "%dh",
+            "days_short": "%dd",
+            "hours_minutes": "%dh %dm",
+            "minutes_seconds": "%dm %ds",
+            "day_month": "%d %s",
+            "months": {
+                "jan": "Jan",
+                "feb": "Feb",
+                "mar": "Mar",
+                "apr": "Apr",
+                "may": "May",
+                "jun": "Jun",
+                "jul": "Jul",
+                "aug": "Aug",
+                "sep": "Sep",
+                "oct": "Oct",
+                "nov": "Nov",
+                "dec": "Dec"
+            }
+        },
+        "home": {
+            "subtitle": "%s online, %d staff on duty",
+            "search": "Search players, actions and commands",
+            "character": "Your character",
+            "character_hint": "Only you see these",
+            "quick_actions": "Quick actions",
+            "quick_actions_hint": "Pin any action from search",
+            "reports_on": "You're receiving reports",
+            "reports_off": "Reports are off for you",
+            "staff_chat": "Staff chat",
+            "chat_empty": "No messages yet. Anything you send here reaches staff only",
+            "chat_placeholder": "Message staff"
+        },
+        "palette": {
+            "results": "Search results",
+            "empty": "Nothing matches. Try a player name, an action or a command",
+            "actions": "Actions",
+            "players": "Players",
+            "commands": "Commands",
+            "player_hint": "ID %d, %s",
+            "hint_move": "Up and down to move",
+            "hint_open": "Enter to open",
+            "hint_pin": "Ctrl+P to pin",
+            "hint_unpin": "Ctrl+P to unpin"
+        },
+        "players": {
+            "subtitle": "%d online, sorted by server ID",
+            "search": "Search by name, server ID or citizen ID",
+            "filter_label": "Filter players",
+            "filters": {
+                "all": "All",
+                "nearby": "Nearby",
+                "down": "Down",
+                "duty": "On duty",
+                "staff": "Staff"
+            },
+            "columns": {
+                "id": "ID",
+                "player": "Player",
+                "job": "Job"
+            },
+            "quick": {
+                "goto": "Go to player",
+                "bring": "Bring to you",
+                "revive": "Revive",
+                "spectate": "Spectate",
+                "details": "Open details"
+            },
+            "no_match": "No one matches \"%s\"",
+            "empty": "No players in this filter",
+            "down_for": "Down for %s",
+            "fallback_name": "Player %d",
+            "identity": "%s, %s. Online for %s",
+            "groups": {
+                "move": "Move and watch",
+                "health": "Health and control",
+                "character": "Character and items",
+                "money": "Money and vehicles"
+            },
+            "stats": {
+                "citizenid": "Citizen ID",
+                "cash": "Cash",
+                "bank": "Bank",
+                "phone": "Phone",
+                "gang": "Gang",
+                "warnings": "Warnings"
+            },
+            "warnings_last": "%d, last on %s",
+            "gang_grade": "%s, %s",
+            "freeze": "Freeze",
+            "unfreeze": "Unfreeze",
+            "pranks": "Pranks",
+            "pranks_hint": "Make drunk, play sound, set on fire, explode",
+            "moderation": "Moderation",
+            "moderation_hint": "Every action here is logged with your name",
+            "view_warnings": "View warnings"
+        },
+        "warnings": {
+            "title": "Warnings",
+            "count_one": "%d warning",
+            "count_many": "%d warnings",
+            "empty": "%s has no warnings",
+            "by": "By %s on %s at %s",
+            "add": "Add a warning"
+        },
+        "ban": {
+            "title": "Ban player",
+            "description": "They're removed from the server now and can't rejoin until the ban ends. The reason is shown to them on connect.",
+            "reason": "Reason",
+            "reason_placeholder": "What they did, so they and other staff can see it",
+            "duration": "Duration",
+            "duration_placeholder": "Choose how long",
+            "permanent": "Permanent",
+            "ban_by": "Ban by",
+            "identifiers": {
+                "license": "License",
+                "license_inline": "license",
+                "discord": "Discord",
+                "discord_inline": "Discord",
+                "steam": "Steam",
+                "steam_inline": "Steam"
+            },
+            "not_linked": "Not linked",
+            "confirm_next": "You'll confirm on the next step",
+            "review": "Review ban",
+            "length_permanent": "permanently",
+            "length_for": "for %s",
+            "confirm_title": "Ban %s %s?",
+            "kicked_permanent": "They're kicked now and can't rejoin. %s",
+            "kicked_until": "They're kicked now and can't rejoin until %s at %s. %s",
+            "banned_one": "Their %s is banned.",
+            "banned_both": "Their %s are both banned.",
+            "banned_all": "Their %s are all banned.",
+            "reason_shown": "They'll see this reason",
+            "confirm_button": "Ban %s"
+        },
+        "form": {
+            "player_option": "%s (%d)",
+            "choose_player": "Choose a player",
+            "choose_parent_first": "Choose a %s first",
+            "choose_field": "Choose %s"
+        },
+        "select": {
+            "filter": "Filter",
+            "filter_label": "Filter options",
+            "empty": "No matches"
+        },
+        "vehicles": {
+            "driving": "You're driving a %s",
+            "on_foot": "You're on foot",
+            "search": "Search models to spawn",
+            "owned_by": "Owned by %s.",
+            "not_owned": "Not owned by a player.",
+            "details": "%s Model %s, net ID %s",
+            "engine": "Engine",
+            "body": "Body",
+            "fuel": "Fuel",
+            "fix": "Fix",
+            "refuel": "Refuel",
+            "spawn_title": "Spawn a vehicle",
+            "spawn_hint": "You get the keys and sit in the driver's seat",
+            "categories": "Vehicle categories",
+            "recent": "Recent",
+            "no_match": "No model matches \"%s\"",
+            "recent_empty": "Vehicles you spawn show up here",
+            "category_empty": "No vehicles in this category",
+            "spawn": "Spawn",
+            "plate_title": "Find by plate",
+            "plate": "Plate",
+            "dev_hint": "Entity ID, net ID, hash and health on screen"
+        },
+        "world": {
+            "subtitle": "Weather and time apply to everyone",
+            "search": "Search locations to teleport",
+            "weather_time": "Weather and time",
+            "now": "Now %s, %s",
+            "weather": "Weather",
+            "time": "Time",
+            "time_of_day": "Time of day",
+            "teleport": "Teleport",
+            "coords": "Coordinates",
+            "coords_placeholder": "x, y, z (z optional), e.g. 215.8, -810.1",
+            "go_to_coords": "Go to coords",
+            "locations_matching": "Locations matching \"%s\"",
+            "all_locations": "All locations",
+            "show_fewer": "Show fewer",
+            "no_location": "No location matches",
+            "dev_tools": "Dev tools",
+            "dev_tools_hint": "Overlays only you see",
+            "label_nearby": "Label nearby",
+            "labels": {
+                "vehicles": "Vehicles",
+                "peds": "Peds",
+                "objects": "Objects"
+            },
+            "copy_title": "Copy to clipboard",
+            "copy": {
+                "vector2": "vector2",
+                "vector3": "vector3",
+                "vector4": "vector4",
+                "heading": "Heading",
+                "entity": "Entity info"
+            }
+        },
+        "commands": {
+            "title": "Commands",
+            "count_one": "%d command you can run",
+            "count_many": "%d commands you can run",
+            "loading": "Loading commands",
+            "search": "Search commands",
+            "no_match": "No command matches \"%s\"",
+            "empty": "No commands available"
+        },
+        "server": {
+            "subtitle": "Build %s, up for %s",
+            "search": "Search resources",
+            "announcement": "Announcement",
+            "announcement_hint": "Sent to all %s in chat",
+            "announcement_placeholder": "What everyone should know",
+            "announce": "Announce",
+            "everyone": "Everyone at once",
+            "give_item_all": "Give item to all",
+            "give_money_all": "Give money to all",
+            "tools": "Tools",
+            "tools_hint": "Bans, offline inventories and stashes",
+            "resources": "Resources",
+            "resource_counts": "%d started, %d stopped",
+            "columns": {
+                "name": "Name",
+                "version": "Version",
+                "state": "State"
+            },
+            "no_match": "No resource matches \"%s\"",
+            "empty": "No resources found",
+            "states": {
+                "started": "Started",
+                "starting": "Starting",
+                "stopping": "Stopping",
+                "restarting": "Restarting",
+                "stopped": "Stopped",
+                "missing": "Missing",
+                "uninitialized": "Not loaded",
+                "unknown": "Unknown"
+            },
+            "restart": "Restart",
+            "stop": "Stop",
+            "start": "Start"
+        },
+        "reports": {
+            "title": "Reports",
+            "none_open": "No open reports",
+            "open_count": "%d open",
+            "search": "Search by player, ID or message",
+            "receiving": "New reports reach you",
+            "not_receiving": "You won't get new reports",
+            "open_reports": "Open reports",
+            "no_match": "No report matches \"%s\"",
+            "empty": "No open reports. New ones show up here",
+            "go_to": "Go to",
+            "reply": "Reply"
+        },
+        "keys": {
+            "esc": "Esc",
+            "enter": "Enter"
+        }
+    },
+    "durations": {
+        "seconds": "%d seconds",
+        "minute": "%d minute",
+        "minutes": "%d minutes",
+        "hour": "%d hour",
+        "hours": "%d hours",
+        "day": "%d day",
+        "days": "%d days",
+        "week": "%d week",
+        "weeks": "%d weeks",
+        "month": "%d month",
+        "months": "%d months",
+        "year": "%d year",
+        "years": "%d years"
+    },
+    "time_presets": {
+        "sunrise": "Sunrise",
+        "morning": "Morning",
+        "noon": "Noon",
+        "sunset": "Sunset",
+        "evening": "Evening",
+        "night": "Night"
+    },
+    "accounts": {
+        "cash": "Cash",
+        "bank": "Bank",
+        "crypto": "Crypto"
+    },
+    "sounds": {
+        "alert": "Alert",
+        "error": "Error",
+        "glass": "Glass"
+    },
+    "weather": {
+        "EXTRASUNNY": "Extra sunny",
+        "CLEAR": "Clear",
+        "NEUTRAL": "Neutral",
+        "SMOG": "Smog",
+        "FOGGY": "Foggy",
+        "OVERCAST": "Overcast",
+        "CLOUDS": "Clouds",
+        "CLEARING": "Clearing",
+        "RAIN": "Rain",
+        "THUNDER": "Thunder",
+        "SNOW": "Snow",
+        "BLIZZARD": "Blizzard",
+        "SNOWLIGHT": "Light snow",
+        "XMAS": "Heavy snow",
+        "HALLOWEEN": "Halloween"
+    },
+    "locations": {
+        "legion_square": "Legion Square",
+        "mission_row": "Mission Row PD",
+        "pillbox": "Pillbox Hospital",
+        "sandy_shores": "Sandy Shores",
+        "paleto_bay": "Paleto Bay"
+    }
+}
