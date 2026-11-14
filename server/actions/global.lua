@@ -419,7 +419,7 @@ handlers.clearInventoryOffline = function(_, input)
 end
 
 handlers.openStash = function(source, input)
-    if type(input.stash) ~= 'string' or not exports.cobalt_inventory:OpenStash(source, input.stash) then
+    if type(input.stash) ~= 'string' or not exports.cobalt_inventory:OpenStash(source, input.stash, nil, true) then
         return false, locale('server.no_stash')
     end
 
