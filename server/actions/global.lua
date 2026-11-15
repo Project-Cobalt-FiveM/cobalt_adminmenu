@@ -401,16 +401,16 @@ end
 
 handlers.clearInventoryOffline = function(_, input)
     local citizenid <const> = type(input.citizenid) == 'string' and input.citizenid:upper() or ''
-    local online <const> = Cobalt.Functions.GetPlayerByCitizenId(citizenid)
+    local player <const> = Cobalt.Functions.GetPlayerByCitizenId(citizenid)
 
-    if online then
-        exports.cobalt_inventory:ClearInventory(online.PlayerData.source)
-
-        return true, locale('common.inventory_cleared', players.name(online))
+    if not player then
+        return false, locale('server.no_citizen')
     end
 
-    if not exports.cobalt_core:GetName(citizenid) then
-        return false, locale('server.no_citizen')
+    if not player.Offline then
+        exports.cobalt_inventory:ClearInventory(player.PlayerData.source)
+
+        return true, locale('common.inventory_cleared', players.name(player))
     end
 
     exports.cobalt_inventory:ClearInventory(citizenid)
