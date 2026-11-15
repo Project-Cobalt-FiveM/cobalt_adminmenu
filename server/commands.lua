@@ -32,16 +32,18 @@ end
 
 ---@param command ActionCommand
 local function actionCommand(command)
+    local action <const> = catalog.byName[command.action]
+
     Cobalt.Commands.Add(command.name, command.help, command.params or {}, false, function(source, args)
         if source == 0 then return end
 
         dispatch.run(source, command.action, command.args and command.args(args, source) or {})
-    end, catalog.byName[command.action].rank)
+    end, action.rank, action.tester and 'tester' or nil)
 end
 
 Cobalt.Commands.Add('admin', locale('commands.admin'), {}, false, function(source)
     TriggerClientEvent('cobalt_adminmenu:client:open', source)
-end, 'staff')
+end, 'staff', 'tester')
 
 actionCommand({
     name = 'car',
@@ -110,7 +112,7 @@ Cobalt.Commands.Add('tp', locale('commands.tp'), {
     else
         dispatch.run(source, 'teleportLocation', { location = args[1] })
     end
-end, 'staff')
+end, 'staff', 'tester')
 
 actionCommand({ name = 'tpm', help = locale('commands.tpm'), action = 'teleportMarker' })
 
@@ -252,7 +254,7 @@ actionCommand({
 AddEventHandler('cobalt_core:Server:PlayerLoaded', function(player)
     local playerId <const> = player.PlayerData.source
 
-    if access.rank(playerId) and #reports.list() > 0 then
+    if access.isStaff(playerId) and #reports.list() > 0 then
         TriggerClientEvent('cobalt_adminmenu:client:reports', playerId, reports.list())
     end
 end)

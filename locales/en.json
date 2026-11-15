@@ -588,6 +588,7 @@
             "players_many": "%d players"
         },
         "ranks": {
+            "tester": "Tester",
             "staff": "Staff",
             "admin": "Admin",
             "owner": "Owner"
@@ -930,5 +931,8 @@
         "pillbox": "Pillbox Hospital",
         "sandy_shores": "Sandy Shores",
         "paleto_bay": "Paleto Bay"
+    },
+    "tester": {
+        "granted": "You have tester admin until the next server restart. Press %s or type /admin to open the menu."
     }
 }

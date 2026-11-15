@@ -15,13 +15,26 @@ local COMMAND_BLACKLIST <const> = {
 }
 
 ---@param name string
+---@param allowed fun(source: integer): any
 ---@param handler fun(source: integer, ...): any
-local function staffCallback(name, handler)
+local function guardedCallback(name, allowed, handler)
     lib.callback.register('cobalt_adminmenu:server:' .. name, function(source, ...)
-        if not access.rank(source) then return end
+        if not allowed(source) then return end
 
         return handler(source, ...)
     end)
+end
+
+---@param name string
+---@param handler fun(source: integer, ...): any
+local function menuCallback(name, handler)
+    guardedCallback(name, access.rank, handler)
+end
+
+---@param name string
+---@param handler fun(source: integer, ...): any
+local function staffCallback(name, handler)
+    guardedCallback(name, access.isStaff, handler)
 end
 
 ---@return string
@@ -103,29 +116,30 @@ local function timePresetOptions()
     return options
 end
 
-staffCallback('open', function(source)
+menuCallback('open', function(source)
     local player <const> = players.get(source)
+    local isStaff <const> = access.isStaff(source)
 
     return {
         rank = access.rank(source),
         name = player and players.name(player) or GetPlayerName(source),
         online = #GetPlayers(),
         staffOnDuty = #access.staff(),
-        receivingReports = Cobalt.Functions.IsOptin(source),
-        reports = reports.list(),
-        staffChat = reports.chat(),
+        receivingReports = isStaff and Cobalt.Functions.IsOptin(source),
+        reports = isStaff and reports.list() or {},
+        staffChat = isStaff and reports.chat() or {},
         build = buildNumber(),
         uptime = GetGameTimer() // 1000,
     }
 end)
 
-staffCallback('action', function(source, name, args)
+menuCallback('action', function(source, name, args)
     local ok <const>, message <const> = dispatch.run(source, name, args)
 
     return { ok = ok, message = message }
 end)
 
-staffCallback('getPlayers', function(source)
+menuCallback('getPlayers', function(source)
     return players.list(source)
 end)
 
@@ -139,7 +153,7 @@ staffCallback('getWarnings', function(_, id)
     return license and db.getWarns(license) or {}
 end)
 
-staffCallback('getLists', function()
+menuCallback('getLists', function()
     local items <const> = {}
 
     for name, item in pairs(exports.cobalt_inventory:GetSharedItems()) do
@@ -202,9 +216,9 @@ staffCallback('getResources', function()
     return resources
 end)
 
-staffCallback('getWorld', world.state)
+menuCallback('getWorld', world.state)
 
-staffCallback('getCommands', function()
+menuCallback('getCommands', function()
     local seen <const> = {}
     local commands <const> = {}
 
@@ -233,7 +247,7 @@ staffCallback('sendStaffChat', function(source, message)
     return true
 end)
 
-staffCallback('vehicleOwner', function(_, plate)
+menuCallback('vehicleOwner', function(_, plate)
     local citizenid <const> = type(plate) == 'string' and exports.cobalt_core:GetVehicleOwnerByPlate(plate)
 
     if not citizenid then return end
@@ -242,3 +256,4 @@ staffCallback('vehicleOwner', function(_, plate)
 end)
 
 require 'server.commands'
+require 'server.tester'

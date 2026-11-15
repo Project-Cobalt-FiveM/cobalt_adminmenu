@@ -38,7 +38,7 @@ function dispatch.run(source, name, args)
         return false, locale('common.unknown_action')
     end
 
-    if not access.allows(source, action.rank) then
+    if not access.can(source, action) then
         return false, locale('common.rank_required', action.label, action.rank)
     end
 

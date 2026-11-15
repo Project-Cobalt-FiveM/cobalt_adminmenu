@@ -14,27 +14,28 @@
   import { navKeys, navPageOf, type NavPage } from '../lib/view';
   import Tooltip from './Tooltip.svelte';
 
-  const navItems: { page: NavPage; icon: Icon }[] = [
+  const navItems: { page: NavPage; icon: Icon; staffOnly?: boolean }[] = [
     { page: 'home', icon: HouseIcon },
     { page: 'players', icon: UsersIcon },
     { page: 'vehicles', icon: CarIcon },
     { page: 'world', icon: SunIcon },
-    { page: 'commands', icon: CodeIcon },
-    { page: 'server', icon: HardDrivesIcon },
-    { page: 'reports', icon: FlagIcon },
+    { page: 'commands', icon: CodeIcon, staffOnly: true },
+    { page: 'server', icon: HardDrivesIcon, staffOnly: true },
+    { page: 'reports', icon: FlagIcon, staffOnly: true },
   ];
 
   const railKeys: Record<NavPage, string> = { ...navKeys, home: 'ui.nav.home_rail' };
 
   const admin = getAdmin();
   const current = $derived(navPageOf(admin.view));
+  const pages = navItems.filter((item) => admin.isStaff || !item.staffOnly);
 </script>
 
 <nav aria-label={t('ui.nav.label')} class="flex w-16 shrink-0 flex-col items-center gap-1 border-r border-border bg-background py-4">
   <img src={cobaltLogo} alt={t('ui.nav.logo')} class="size-7 shrink-0" />
   <div class="h-px w-8 shrink-0 bg-border"></div>
   <div class="flex flex-col items-center gap-1 pt-2">
-    {#each navItems as { page, icon: NavIcon } (page)}
+    {#each pages as { page, icon: NavIcon } (page)}
       {@const active = page === current}
       <Tooltip label={t(railKeys[page])} side="right">
         <button

@@ -64,10 +64,13 @@
         dismiss();
         admin.openAction(entry.action, {});
         break;
-      case 'player':
+      case 'player': {
         dismiss();
-        admin.navigate({ page: 'player', id: entry.player.id });
+        const goto = admin.actions.get('goto');
+        if (admin.isStaff) admin.navigate({ page: 'player', id: entry.player.id });
+        else if (goto) admin.openAction(goto, { target: entry.player });
         break;
+      }
       case 'command':
         dismiss();
         void nui('runCommand', { name: entry.command.name });
@@ -158,34 +161,36 @@
     </div>
   </section>
 
-  <section class="flex flex-col gap-2.5">
-    <SectionTitle title={t('ui.reports.open_reports')} aside={admin.receivingReports ? t('ui.home.reports_on') : t('ui.home.reports_off')} />
-    <ReportList reports={admin.reports.slice(0, 3)} empty={t('ui.reports.none_open')} />
-  </section>
+  {#if admin.isStaff}
+    <section class="flex flex-col gap-2.5">
+      <SectionTitle title={t('ui.reports.open_reports')} aside={admin.receivingReports ? t('ui.home.reports_on') : t('ui.home.reports_off')} />
+      <ReportList reports={admin.reports.slice(0, 3)} empty={t('ui.reports.none_open')} />
+    </section>
 
-  <section class="flex grow flex-col justify-end gap-2.5">
-    <SectionTitle title={t('ui.home.staff_chat')} />
-    <div class="flex flex-col gap-2">
-      {#if recentChat.length === 0}
-        <p class="text-13/4.5 text-muted-foreground">{t('ui.home.chat_empty')}</p>
-      {/if}
-      {#each recentChat as entry (`${entry.at}:${entry.name}:${entry.message}`)}
-        <div class="flex gap-2">
-          <span class="w-16 shrink-0 truncate text-13/4.5 font-medium text-foreground">{entry.name}</span>
-          <span class="min-w-0 grow text-13/4.5 break-words text-muted-foreground">{entry.message}</span>
-          <span class="shrink-0 text-xs/4.5 text-muted-foreground tabular-nums">{clock(entry.at)}</span>
-        </div>
-      {/each}
-    </div>
-    <form onsubmit={sendChat} class="flex gap-2">
-      <input
-        bind:value={draft}
-        placeholder={t('ui.home.chat_placeholder')}
-        aria-label={t('ui.home.chat_placeholder')}
-        maxlength={250}
-        class="h-9 min-w-0 grow rounded-md border border-input bg-card px-3 text-sm/4.5 text-foreground placeholder:text-muted-foreground {fieldFocus} {motion}"
-      />
-      <Button type="submit" size="lg">{t('ui.common.send')}</Button>
-    </form>
-  </section>
+    <section class="flex grow flex-col justify-end gap-2.5">
+      <SectionTitle title={t('ui.home.staff_chat')} />
+      <div class="flex flex-col gap-2">
+        {#if recentChat.length === 0}
+          <p class="text-13/4.5 text-muted-foreground">{t('ui.home.chat_empty')}</p>
+        {/if}
+        {#each recentChat as entry (`${entry.at}:${entry.name}:${entry.message}`)}
+          <div class="flex gap-2">
+            <span class="w-16 shrink-0 truncate text-13/4.5 font-medium text-foreground">{entry.name}</span>
+            <span class="min-w-0 grow text-13/4.5 break-words text-muted-foreground">{entry.message}</span>
+            <span class="shrink-0 text-xs/4.5 text-muted-foreground tabular-nums">{clock(entry.at)}</span>
+          </div>
+        {/each}
+      </div>
+      <form onsubmit={sendChat} class="flex gap-2">
+        <input
+          bind:value={draft}
+          placeholder={t('ui.home.chat_placeholder')}
+          aria-label={t('ui.home.chat_placeholder')}
+          maxlength={250}
+          class="h-9 min-w-0 grow rounded-md border border-input bg-card px-3 text-sm/4.5 text-foreground placeholder:text-muted-foreground {fieldFocus} {motion}"
+        />
+        <Button type="submit" size="lg">{t('ui.common.send')}</Button>
+      </form>
+    </section>
+  {/if}
 </div>

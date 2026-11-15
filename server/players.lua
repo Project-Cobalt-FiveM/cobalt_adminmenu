@@ -144,7 +144,7 @@ local function row(source, identity, origin)
         onDuty = job.onduty == true and job.name ~= 'unemployed',
         down = down,
         downSince = downSince,
-        staff = access.rank(source) ~= nil,
+        staff = access.isStaff(source),
         distance = math.floor(#(GetEntityCoords(GetPlayerPed(source)) - origin)),
     }
 end

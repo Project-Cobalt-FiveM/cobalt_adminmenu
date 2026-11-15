@@ -21,6 +21,7 @@ export class Admin {
   readonly boot: Bootstrap;
   readonly openedAt: number;
   readonly actions: ReadonlyMap<string, Action>;
+  readonly isStaff: boolean;
   readonly #onClose: () => void;
   #listsRequested = false;
   #commandsRequested = false;
@@ -42,6 +43,7 @@ export class Admin {
     this.openedAt = openedAt;
     this.#onClose = onClose;
     this.actions = new Map(boot.actions.map((action) => [action.name, action]));
+    this.isStaff = boot.rank !== 'tester';
     this.toggles = { ...boot.toggles };
     this.reports = boot.reports;
     this.staffChat = boot.staffChat;

@@ -55,6 +55,7 @@
   const visible = $derived(sorted.filter((player) => test(player) && includesText(query, player.name, player.id, player.citizenid)));
 
   function open(id: number): void {
+    if (!admin.isStaff) return;
     admin.navigate({ page: 'player', id });
   }
 
@@ -133,7 +134,9 @@
             {@const action = admin.actions.get(name)}
             {@render rowButton(t(tip), icon, isSelected, !action?.allowed, () => action && admin.openAction(action, { target }))}
           {/each}
-          {@render rowButton(t('ui.players.quick.details'), CaretRightIcon, isSelected, false, () => open(player.id))}
+          {#if admin.isStaff}
+            {@render rowButton(t('ui.players.quick.details'), CaretRightIcon, isSelected, false, () => open(player.id))}
+          {/if}
         </div>
       </div>
     {/each}

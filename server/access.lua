@@ -2,7 +2,7 @@ local Cobalt <const> = exports.cobalt_core:GetCoreObject()
 local catalog <const> = require 'shared.actions'
 
 ---@type AdminRank[]
-local RANKS <const> = { 'owner', 'admin', 'staff' }
+local RANKS <const> = { 'owner', 'admin', 'staff', 'tester' }
 
 local access <const> = {}
 
@@ -23,6 +23,19 @@ function access.allows(source, required)
     return catalog.rankAllows(access.rank(source), required)
 end
 
+---@param source integer
+---@param action AdminAction
+---@return boolean
+function access.can(source, action)
+    return catalog.actionAllows(access.rank(source), action)
+end
+
+---@param source integer
+---@return boolean
+function access.isStaff(source)
+    return access.allows(source, 'staff')
+end
+
 ---@return integer[]
 function access.staff()
     local staff <const> = {}
@@ -30,7 +43,7 @@ function access.staff()
     for _, playerId in ipairs(GetPlayers()) do
         local source <const> = tonumber(playerId) --[[@as integer]]
 
-        if access.rank(source) then
+        if access.isStaff(source) then
             staff[#staff + 1] = source
         end
     end

@@ -49,9 +49,11 @@ local function catalogFor(rank)
     local list <const> = {}
 
     for _, action in ipairs(catalog.list) do
-        if not action.hidden then
+        local allowed <const> = catalog.actionAllows(rank, action)
+
+        if not action.hidden and (allowed or rank ~= 'tester') then
             local entry <const> = table.clone(action)
-            entry.allowed = catalog.rankAllows(rank, action.rank)
+            entry.allowed = allowed
             list[#list + 1] = entry
         end
     end

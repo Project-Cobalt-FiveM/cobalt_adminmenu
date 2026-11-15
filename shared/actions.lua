@@ -1,4 +1,4 @@
----@alias AdminRank 'staff'|'admin'|'owner'
+---@alias AdminRank 'tester'|'staff'|'admin'|'owner'
 ---@alias AdminScope 'self'|'player'|'vehicle'|'world'|'server'|'report'
 ---@alias AdminFieldKind 'text'|'textarea'|'number'|'select'
 ---@alias AdminListName 'items'|'jobs'|'gangs'|'grades'|'vehicles'|'peds'|'locations'|'accounts'|'sounds'|'ranks'|'weatherTypes'|'timePresets'|'playerVehicles'
@@ -18,6 +18,7 @@
 ---@field hint? string
 ---@field scope AdminScope
 ---@field rank AdminRank
+---@field tester? boolean
 ---@field side 'server'|'client'
 ---@field toggle? boolean
 ---@field danger? boolean
@@ -29,21 +30,91 @@ local playerField <const> = { key = 'target', label = locale('fields.player'), k
 
 ---@type AdminAction[]
 local Actions <const> = {
-    { name = 'noclip', label = locale('catalog.noclip.label'), scope = 'self', rank = 'staff', side = 'client', toggle = true },
-    { name = 'godmode', label = locale('catalog.godmode.label'), scope = 'self', rank = 'admin', side = 'client', toggle = true },
-    { name = 'invisible', label = locale('catalog.invisible.label'), scope = 'self', rank = 'staff', side = 'client', toggle = true },
-    { name = 'names', label = locale('catalog.names.label'), scope = 'self', rank = 'staff', side = 'client', toggle = true },
-    { name = 'blips', label = locale('catalog.blips.label'), scope = 'self', rank = 'staff', side = 'client', toggle = true },
-    { name = 'infiniteAmmo', label = locale('catalog.infinite_ammo.label'), scope = 'self', rank = 'admin', side = 'client', toggle = true },
-    { name = 'reviveSelf', label = locale('catalog.revive_self.label'), scope = 'self', rank = 'admin', side = 'server' },
-    { name = 'teleportMarker', label = locale('catalog.teleport_marker.label'), scope = 'self', rank = 'staff', side = 'client' },
-    { name = 'teleportBack', label = locale('catalog.teleport_back.label'), scope = 'self', rank = 'staff', side = 'client' },
+    {
+        name = 'noclip',
+        label = locale('catalog.noclip.label'),
+        scope = 'self',
+        rank = 'staff',
+        tester = true,
+        side = 'client',
+        toggle = true,
+    },
+    {
+        name = 'godmode',
+        label = locale('catalog.godmode.label'),
+        scope = 'self',
+        rank = 'admin',
+        tester = true,
+        side = 'client',
+        toggle = true,
+    },
+    {
+        name = 'invisible',
+        label = locale('catalog.invisible.label'),
+        scope = 'self',
+        rank = 'staff',
+        tester = true,
+        side = 'client',
+        toggle = true,
+    },
+    {
+        name = 'names',
+        label = locale('catalog.names.label'),
+        scope = 'self',
+        rank = 'staff',
+        tester = true,
+        side = 'client',
+        toggle = true,
+    },
+    {
+        name = 'blips',
+        label = locale('catalog.blips.label'),
+        scope = 'self',
+        rank = 'staff',
+        tester = true,
+        side = 'client',
+        toggle = true,
+    },
+    {
+        name = 'infiniteAmmo',
+        label = locale('catalog.infinite_ammo.label'),
+        scope = 'self',
+        rank = 'admin',
+        tester = true,
+        side = 'client',
+        toggle = true,
+    },
+    {
+        name = 'reviveSelf',
+        label = locale('catalog.revive_self.label'),
+        scope = 'self',
+        rank = 'admin',
+        tester = true,
+        side = 'server',
+    },
+    {
+        name = 'teleportMarker',
+        label = locale('catalog.teleport_marker.label'),
+        scope = 'self',
+        rank = 'staff',
+        tester = true,
+        side = 'client',
+    },
+    {
+        name = 'teleportBack',
+        label = locale('catalog.teleport_back.label'),
+        scope = 'self',
+        rank = 'staff',
+        tester = true,
+        side = 'client',
+    },
     {
         name = 'teleportCoords',
         label = locale('catalog.teleport_coords.label'),
         hint = locale('catalog.teleport_coords.hint'),
         scope = 'self',
         rank = 'admin',
+        tester = true,
         side = 'client',
         fields = {
             { key = 'coords', label = locale('fields.coords'), kind = 'text', placeholder = locale('fields.coords_placeholder') },
@@ -54,6 +125,7 @@ local Actions <const> = {
         label = locale('catalog.teleport_location.label'),
         scope = 'self',
         rank = 'admin',
+        tester = true,
         side = 'client',
         fields = { { key = 'location', label = locale('fields.location'), kind = 'select', list = 'locations' } },
     },
@@ -66,8 +138,24 @@ local Actions <const> = {
         side = 'server',
         fields = { { key = 'amount', label = locale('fields.rounds'), kind = 'number' } },
     },
-    { name = 'coords', label = locale('catalog.coords.label'), scope = 'self', rank = 'admin', side = 'client', toggle = true },
-    { name = 'fastRun', label = locale('catalog.fast_run.label'), scope = 'self', rank = 'admin', side = 'client', toggle = true },
+    {
+        name = 'coords',
+        label = locale('catalog.coords.label'),
+        scope = 'self',
+        rank = 'admin',
+        tester = true,
+        side = 'client',
+        toggle = true,
+    },
+    {
+        name = 'fastRun',
+        label = locale('catalog.fast_run.label'),
+        scope = 'self',
+        rank = 'admin',
+        tester = true,
+        side = 'client',
+        toggle = true,
+    },
     { name = 'entityLaser', label = locale('catalog.entity_laser.label'), scope = 'self', rank = 'admin', side = 'client', toggle = true },
     {
         name = 'entityFreeAim',
@@ -101,10 +189,38 @@ local Actions <const> = {
         side = 'client',
         toggle = true,
     },
-    { name = 'copyVector2', label = locale('catalog.copy_vector2.label'), scope = 'self', rank = 'admin', side = 'client' },
-    { name = 'copyVector3', label = locale('catalog.copy_vector3.label'), scope = 'self', rank = 'admin', side = 'client' },
-    { name = 'copyVector4', label = locale('catalog.copy_vector4.label'), scope = 'self', rank = 'admin', side = 'client' },
-    { name = 'copyHeading', label = locale('catalog.copy_heading.label'), scope = 'self', rank = 'admin', side = 'client' },
+    {
+        name = 'copyVector2',
+        label = locale('catalog.copy_vector2.label'),
+        scope = 'self',
+        rank = 'admin',
+        tester = true,
+        side = 'client',
+    },
+    {
+        name = 'copyVector3',
+        label = locale('catalog.copy_vector3.label'),
+        scope = 'self',
+        rank = 'admin',
+        tester = true,
+        side = 'client',
+    },
+    {
+        name = 'copyVector4',
+        label = locale('catalog.copy_vector4.label'),
+        scope = 'self',
+        rank = 'admin',
+        tester = true,
+        side = 'client',
+    },
+    {
+        name = 'copyHeading',
+        label = locale('catalog.copy_heading.label'),
+        scope = 'self',
+        rank = 'admin',
+        tester = true,
+        side = 'client',
+    },
     {
         name = 'copyEntity',
         label = locale('catalog.copy_entity.label'),
@@ -122,7 +238,15 @@ local Actions <const> = {
         hidden = true,
     },
 
-    { name = 'goto', label = locale('catalog.goto.label'), scope = 'player', rank = 'staff', side = 'server', fields = { playerField } },
+    {
+        name = 'goto',
+        label = locale('catalog.goto.label'),
+        scope = 'player',
+        rank = 'staff',
+        tester = true,
+        side = 'server',
+        fields = { playerField },
+    },
     { name = 'bring', label = locale('catalog.bring.label'), scope = 'player', rank = 'staff', side = 'server', fields = { playerField } },
     {
         name = 'spectate',
@@ -405,12 +529,34 @@ local Actions <const> = {
         hint = locale('catalog.spawn_vehicle.hint'),
         scope = 'vehicle',
         rank = 'admin',
+        tester = true,
         side = 'server',
         fields = { { key = 'model', label = locale('fields.vehicle'), kind = 'select', list = 'vehicles' } },
     },
-    { name = 'fixVehicle', label = locale('catalog.fix_vehicle.label'), scope = 'vehicle', rank = 'admin', side = 'client' },
-    { name = 'refuelVehicle', label = locale('catalog.refuel_vehicle.label'), scope = 'vehicle', rank = 'admin', side = 'server' },
-    { name = 'maxMods', label = locale('catalog.max_mods.label'), scope = 'vehicle', rank = 'admin', side = 'client' },
+    {
+        name = 'fixVehicle',
+        label = locale('catalog.fix_vehicle.label'),
+        scope = 'vehicle',
+        rank = 'admin',
+        tester = true,
+        side = 'client',
+    },
+    {
+        name = 'refuelVehicle',
+        label = locale('catalog.refuel_vehicle.label'),
+        scope = 'vehicle',
+        rank = 'admin',
+        tester = true,
+        side = 'server',
+    },
+    {
+        name = 'maxMods',
+        label = locale('catalog.max_mods.label'),
+        scope = 'vehicle',
+        rank = 'admin',
+        tester = true,
+        side = 'client',
+    },
     {
         name = 'changePlate',
         label = locale('catalog.change_plate.label'),
@@ -606,7 +752,7 @@ for i = 1, #Actions do
 end
 
 ---@type table<AdminRank, integer>
-local RANK_LEVEL <const> = { staff = 1, admin = 2, owner = 3 }
+local RANK_LEVEL <const> = { tester = 0, staff = 1, admin = 2, owner = 3 }
 
 ---@param rank AdminRank?
 ---@param required AdminRank
@@ -615,14 +761,25 @@ local function rankAllows(rank, required)
     return rank ~= nil and RANK_LEVEL[rank] >= RANK_LEVEL[required]
 end
 
+---@param rank AdminRank?
+---@param action AdminAction
+---@return boolean
+local function actionAllows(rank, action)
+    if rank == 'tester' then return action.tester == true end
+
+    return rankAllows(rank, action.rank)
+end
+
 ---@class AdminCatalog
 ---@field list AdminAction[]
 ---@field byName table<string, AdminAction>
 ---@field rankAllows fun(rank: AdminRank?, required: AdminRank): boolean
+---@field actionAllows fun(rank: AdminRank?, action: AdminAction): boolean
 
 ---@type AdminCatalog
 return {
     list = Actions,
     byName = byName,
     rankAllows = rankAllows,
+    actionAllows = actionAllows,
 }

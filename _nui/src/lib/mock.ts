@@ -1,9 +1,14 @@
 import { installMock, type MockHandlers } from './nui';
 import type { Action, Bootstrap, ChatMessage, NuiMessage, PlayerDetail, PlayerRow, Rank, Report, Resource, WorldState } from './types';
 
-const rankLevels: Record<Rank, number> = { staff: 1, admin: 2, owner: 3 };
+const rankLevels: Record<Rank, number> = { tester: 0, staff: 1, admin: 2, owner: 3 };
 const requestedRank = new URLSearchParams(window.location.search).get('rank');
-const viewerRank: Rank = requestedRank === 'staff' || requestedRank === 'owner' ? requestedRank : 'admin';
+const viewerRank: Rank = requestedRank === 'tester' || requestedRank === 'staff' || requestedRank === 'owner' ? requestedRank : 'admin';
+const testerActions = new Set([
+  'noclip', 'godmode', 'invisible', 'names', 'blips', 'infiniteAmmo', 'reviveSelf', 'teleportMarker', 'teleportBack', 'teleportCoords',
+  'teleportLocation', 'coords', 'fastRun', 'copyVector2', 'copyVector3', 'copyVector4', 'copyHeading', 'goto', 'spawnVehicle',
+  'fixVehicle', 'refuelVehicle', 'maxMods',
+]);
 
 const definitions: Omit<Action, 'allowed'>[] = [
   { name: 'noclip', label: 'Noclip', scope: 'self', rank: 'staff', side: 'client', toggle: true },
@@ -441,7 +446,11 @@ const definitions: Omit<Action, 'allowed'>[] = [
   { name: 'reportClose', label: 'Close report', scope: 'report', rank: 'staff', side: 'server' },
 ];
 
-const actions: Action[] = definitions.map((action) => ({ ...action, allowed: rankLevels[viewerRank] >= rankLevels[action.rank] }));
+const allowedFor = (action: Omit<Action, 'allowed'>): boolean =>
+  viewerRank === 'tester' ? testerActions.has(action.name) : rankLevels[viewerRank] >= rankLevels[action.rank];
+const actions: Action[] = definitions
+  .map((action) => ({ ...action, allowed: allowedFor(action) }))
+  .filter((action) => action.allowed || viewerRank !== 'tester');
 
 const now = Math.floor(Date.now() / 1000);
 

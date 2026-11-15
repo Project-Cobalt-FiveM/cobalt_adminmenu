@@ -365,7 +365,7 @@ handlers.kickAll = function(_, input)
     for _, playerId in ipairs(GetPlayers()) do
         local target <const> = tonumber(playerId) --[[@as integer]]
 
-        if not access.rank(target) then
+        if not access.isStaff(target) then
             Cobalt.Functions.Kick(target, message)
         end
     end

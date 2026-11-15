@@ -1,6 +1,11 @@
-export type Rank = 'staff' | 'admin' | 'owner';
+export type Rank = 'tester' | 'staff' | 'admin' | 'owner';
 
-export const rankKeys: Record<Rank, string> = { staff: 'ui.ranks.staff', admin: 'ui.ranks.admin', owner: 'ui.ranks.owner' };
+export const rankKeys: Record<Rank, string> = {
+  tester: 'ui.ranks.tester',
+  staff: 'ui.ranks.staff',
+  admin: 'ui.ranks.admin',
+  owner: 'ui.ranks.owner',
+};
 
 export type Scope = 'self' | 'player' | 'vehicle' | 'world' | 'server' | 'report';
 
@@ -37,6 +42,7 @@ export interface Action {
   hint?: string;
   scope: Scope;
   rank: Rank;
+  tester?: boolean;
   side: 'server' | 'client';
   toggle?: boolean;
   danger?: boolean;
